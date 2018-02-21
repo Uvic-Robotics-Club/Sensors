@@ -1,6 +1,7 @@
 /*
  * Source file for the TempSensor class
  * Author: Andrew Rose
+ */
 
 #include <Wire.h>
 #include <Arduino.h>
