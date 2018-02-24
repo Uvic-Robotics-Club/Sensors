@@ -36,7 +36,6 @@ void loop(){
 
   //Writing to serial in float precision, uncomment the line below:
   //sens1.write_float(&tmptmp);
-  //note: this writes the 4 bytes of the float in REVERSE ORDER
 
   //Printing decimal representations of temperature
   //Uncomment for visible ease of testing
