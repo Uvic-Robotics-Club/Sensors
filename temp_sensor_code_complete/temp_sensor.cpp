@@ -43,14 +43,6 @@ float TempSensor::get_temp(){
 }
 
 //given a pointer to a float, writes its four bytes to serial
-/*
-void TempSensor::write_float(float * temp_ptr){
-  byte * ptr2 = (byte*) temp_ptr + 3;
-  for (int i = 0; i++; i<4){
-    Serial.write(ptr2, 1);
-    ptr2--;
-  }
-  */
 void TempSensor::write_float(float * temp_ptr){
   byte * tt = (byte*) temp_ptr;
   for (int i = 0; i < 4; i++){
