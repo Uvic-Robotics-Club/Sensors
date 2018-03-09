@@ -1,3 +1,8 @@
+//NOTE: THIS IS IN THE EXAMPLES LIBRARY---
+
+
+
+
 /*****************************************************************
 LSM9DS1_Basic_I2C.ino
 SFE_LSM9DS1 Library Simple Example Code - I2C Interface
