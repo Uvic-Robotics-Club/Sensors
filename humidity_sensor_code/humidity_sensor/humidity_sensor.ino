@@ -2,38 +2,18 @@
 #include <Wire.h>
 
 float humidity = 0;
-float tempf = 0;
+float tempC = 0;
 
-/*
 
-int power = A3;
-int GND = A2;
-
-*/
-
-Weather sensor;
+Weather humiditySensor;
 
 
 void setup()
 {
   Serial.begin(9600);
 
-
-/*
-
-  pinMode(power, OUTPUT);
-  pinMode(GND, OUTPUT);
-
-  digitalWrite(power, HIGH);
-  digitalWrite(GND, LOW);
-
-
-*/
-
-  sensor.begin();
+  humiditySensor.begin();
 }
-
-
 
 
 void loop()
@@ -45,23 +25,23 @@ void loop()
 }
 
 
-
-
+//gets humidity and temp.
+//get.Temp is celcius
+//get.TempF is farenhight
 void getWeather()
 {
-  humidity = sensor.getRH();
+  humidity = humiditySensor.getRH();
 
-  tempf = sensor.getTempF();
+  tempC = humiditySensor.getTemp();
 }
 
 
-
-
+//prints global values to serial.
 void printInfo()
 {
   Serial.print("Temp:");
-  Serial.print(tempf);
-  Serial.print("F, ");
+  Serial.print(tempC);
+  Serial.print("C, ");
 
   Serial.print("Humidity:");
   Serial.print(humidity);
