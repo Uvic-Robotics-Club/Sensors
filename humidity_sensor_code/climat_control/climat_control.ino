@@ -23,6 +23,7 @@ void loop()
   getWeather();
 
   fanSpeed = map(tempC, 10, 30, 0, 255); //10, 30 == sensor value range (that has been converted in celcius)   ||   0, 255 == pwm (fan control) range
+  fanSpeed = constrain(fanSpeed, 0, 255);
   analogWrite(fanPin, fanSpeed);
 
   delay(10);
