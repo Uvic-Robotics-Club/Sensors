@@ -1,0 +1,22 @@
+instructions:
+we need to connect i2c expander to climat control in order to control all 6 temp sensors with 1 arduino
+
+
+file descriptions:
+- i2c expander can control multiple temp sensors
+
+- climat control can map 1 temp sensor to 1 fan
+
+
+
+other:
+humidity sensor i2c address: 0x40
+
+
+refrences:
+i2c expander refrences: https://learn.adafruit.com/adafruit-tca9548a-1-to-8-i2c-multiplexer-breakout/wiring-and-test
+
+
+
+
+
