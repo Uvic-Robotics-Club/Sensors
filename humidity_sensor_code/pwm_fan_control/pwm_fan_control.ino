@@ -1,14 +1,14 @@
 int fanPin = 11;
 
-int stoppp = 255;
+int fanSpeed = 150;
 
 
 void setup() {
-
+Serial.begin(9600);
 }
 
 
 void loop() {
-  analogWrite(fanPin, stoppp);
- 
+  analogWrite(fanPin, fanSpeed);
+ Serial.println(fanSpeed);
 }
