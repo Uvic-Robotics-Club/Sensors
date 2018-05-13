@@ -14,9 +14,13 @@
  * DRDY_M, by default, interrupts whenever there is new magnetometer data
  */
 
+#include "Arduino.h"
 #include <Wire.h>
 #include "uvic_lsm9ds1.h"
 #include "imu_queue.h"
+#include "stdint.h"
+#include "uvic_lsm9ds1_defines.h"
+#include "uvic_lsm9ds1_registers.h"
 
 UVicLSM9DS1 imu;
 
@@ -52,7 +56,7 @@ void setup(){
   pinMode(RDYM_PIN, INPUT);
 
   //Make sure everything is connected. If not, stop right here
-  uint16_t status = begin();
+  uint16_t status = imu.begin();
   if (!status){
     Serial.print("Failed to connect to IMU: 0x");
     Setial.println(status, HEX);
@@ -64,7 +68,7 @@ void setup(){
 void loop(){
   //Print the current measurements every second.
   //These are running averages taken by reading the entire queues
-  if (millis() > (lastPrint + 1000){
+  if (millis() > (lastPrint + 1000)){
     printStats();
     lastPrint = millis();
   }

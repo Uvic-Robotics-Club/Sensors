@@ -7,29 +7,29 @@
 
 #include "imu_queue.h"
 
-IMUQueue::IMUQueue(int q_size){
-  array = (int16_t*)malloc(q_size*sizeof(int16_t));
-  if (array==NULL){
+IMUQueue::IMUQueue(int len){
+  arr = (int16_t*)malloc(len*sizeof(int16_t));
+  if (arr==NULL){
     Serial.print("Error allocating memory");
     exit(1);
   }
   tail = -1; //the tail of the array will be immediately bumped to 0, the first index
-  size = q_size; //the length of the array
+  q_len = len; //the length of the array
 }
 
 void IMUQueue::enqueue(int16_t item){
-  tail = (tail + 1) % size;
-  array[tail] = item;
+  tail = (tail + 1) % q_len;
+  arr[tail] = item;
 }
 
 int16_t IMUQueue::getTail(){
-  return array[tail];
+  return arr[tail];
 }
 
-int16_t getAvg(){
+int16_t IMUQueue::getAvg(){
   int32_t sum;
-  for (int i = 0; i < size; i++){
-    sum += array[i];
+  for (int i = 0; i < q_len; i++){
+    sum += arr[i];
   }
-  return (int16_t) sum/size;
+  return (int16_t) sum/q_len;
 }

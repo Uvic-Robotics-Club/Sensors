@@ -38,7 +38,7 @@ enum time_spec{
 };
 
 enum mode_spec{
-  MODE_REL //relative to orientation of the IMU
+  MODE_REL, //relative to orientation of the IMU
   MODE_ABS //relative to latitude and longitude
 };
 
@@ -85,6 +85,7 @@ enum gyro_odr
   G_ODR_476,  // 476 Hz (5)
   G_ODR_952 // 952 Hz (6)
 };
+
 // accel_odr defines all possible output data rates of the accelerometer:
 enum accel_odr
 {
@@ -105,7 +106,6 @@ enum accel_abw
   A_ABW_105,    // 105 Hz (0x2)
   A_ABW_50,   //  50 Hz (0x3)
 };
-
 
 // mag_odr defines all possible output data rates of the magnetometer:
 enum mag_odr
@@ -204,13 +204,6 @@ enum lsm9ds1_axis{
 ///////////////////////
 //These structures store all settings data for the IMU
 
-struct masterSettings{
-  gyroSettings gyro;
-  accelSettings accel;
-  magSettings mag;
-  temperatureSettings temp;
-};
-
 struct accelSettings
 {
   uint8_t scale;
@@ -247,6 +240,12 @@ struct magSettings
   uint8_t ZPerformance;
   uint8_t lowPowerEnable;
   uint8_t operatingMode;
+};
+
+struct masterSettings{
+  gyroSettings gyro;
+  accelSettings accel;
+  magSettings mag;
 };
 
 //there is no need for a temperature settings struct

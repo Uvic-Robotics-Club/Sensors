@@ -4,12 +4,13 @@
 #define _uvic_lsm9ds1_h
 
 #include <Wire.h>
-#include <queue>
 
+#include "Arduino.h"
 #include "uvic_lsm9ds1_registers.h"
 #include "uvic_lsm9ds1_types.h"
 #include "uvic_lsm9ds1_defines.h"
 #include "imu_queue.h"
+#include "stdint.h"
 
 class UVicLSM9DS1{
 
@@ -22,12 +23,12 @@ class UVicLSM9DS1{
     float gBias[3], aBias[3], mBias[3];
     int16_t gBiasRaw[3], aBiasRaw[3], mBiasRaw[3];
   
-    float getVal(axis_spec axsp, stat_spec stsp, time_spec tisp, mode_spec mdsp);
-    float[3] getTrio(stat_spec stsp, time_spec tisp, mode_spec mdsp); //return {getValx, getValy, getValz}
+    //float getVal(axis_spec axsp, stat_spec stsp, time_spec tisp, mode_spec mdsp);
+    //float[3] getTrio(stat_spec stsp, time_spec tisp, mode_spec mdsp); //return {getValx, getValy, getValz}
 
-    //Constructor. No parameters required, since we are not touching SPI
-    LSM9DS1();
-
+    //Just a boring old parameter-less constructor
+    //Since we will not be working with SPI as the original code provided for, there is no need for any parameters here
+    UVic_LSM9DS1();
 
     //////////////////////////////////
     //INITIALIZATION/SETUP FUNCTIONS//
@@ -145,8 +146,6 @@ class UVicLSM9DS1{
 
     //include a method that resets the speed when the robot stops (to avoid drifting values)
 
-  protected:
-  
    //ADD THE ARRAYS/QUEUES. AND ACCOUNT FOR THE MAGNETOMETER AND TEMPERATURE.
    //these are going to be RAW values that must be converted to actual integers via whatever formula in the get methods!
    //but is it possible to keep averages of the raw data?
@@ -167,9 +166,7 @@ class UVicLSM9DS1{
 
    bool _autoCalc; //determines whether to automatically subtract accelerometer and gyroscope bias
   
-   //Just a boring old parameter-less constructor
-   //Since we will not be working with SPI as the original code provided for, there is no need for any parameters here
-   UVic_LSM9DS1();
+   
    
    //But the queues can't do everything. Cumulative items include a) POSITION and SPEED and b) ANGLE angle can be calculated from accel IF the robot is still
    //pos and speed need to be trios of variables for x/y/z

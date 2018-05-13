@@ -6,7 +6,7 @@
  */
 
 
-//#include "uvic_lsm9ds1.h"
+#include "uvic_lsm9ds1.h"
 #include "uvic_lsm9ds1_registers.h"
 #include "uvic_lsm9ds1_defines.h"
 #include "uvic_lsm9ds1_types.h"
@@ -20,8 +20,14 @@
 ///////////////
 
 UVicLSM9DS1::UVicLSM9DS1(){
-  //In the original code, the init(...) function would be called here
-  //Here, there is no need, since we will always use I2C. Just put the contents of init in here
+  
+}
+
+//////////////////////////////////
+//INITIALIZATION/SETUP FUNCTIONS//
+//////////////////////////////////
+
+uint16_t UVicLSM9DS1::begin(){
 
   // gyro scale can be 245, 500, or 2000
   settings.gyro.scale = 245;
@@ -100,13 +106,7 @@ UVicLSM9DS1::UVicLSM9DS1(){
     mBiasRaw[i] = 0;
   }
   _autoCalc = false; //initialize to false to calculate biases efficiently
-}
-
-//////////////////////////////////
-//INITIALIZATION/SETUP FUNCTIONS//
-//////////////////////////////////
-
-uint16_t UVicLSM9DS1::begin(){
+  
   constrainScales();
   //Once we have the scale values, we can calculate the resolution of each sensor
   calcgRes(); //Calculate DPS per ADC tick, stored in gRes variable
